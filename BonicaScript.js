@@ -1,29 +1,29 @@
 //->StartFragment1
 ///////////////////////////////////////////////////////////////////////////////
-// пользовательские переменные документа, для отображения на макете экранов
+// РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ РїРµСЂРµРјРµРЅРЅС‹Рµ РґРѕРєСѓРјРµРЅС‚Р°, РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РјР°РєРµС‚Рµ СЌРєСЂР°РЅРѕРІ
 //////////////////////////////////////////////////////////////////////////////
-//CardNumber Номер карты
-//Phone Введенный номер телефона
-//FIO ФИО
-//ClientPhone Номер телефона клиента
-//ClientBDay  Дата рождения клиента
-//ClientSale  Общая сумма покупок клиента
-//Balance Баланс карты
-//DiscountBon Сумма оплаты бонусами
-//DiscountGiC Сумма оплаты подарочными сертификатами
-//SumSalerI Премия кассира
-//SumSalerS Премия кассира за текущую смену
-//NameSaler ФИО кассира
-//CertSumm Сумма введенных сертификатов
-//DebtSumm Сумма долга по рассрочке
-//Available Баланс карты, доступный к списанию
+//CardNumber РќРѕРјРµСЂ РєР°СЂС‚С‹
+//Phone Р’РІРµРґРµРЅРЅС‹Р№ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°
+//FIO Р¤РРћ
+//ClientPhone РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РєР»РёРµРЅС‚Р°
+//ClientBDay  Р”Р°С‚Р° СЂРѕР¶РґРµРЅРёСЏ РєР»РёРµРЅС‚Р°
+//ClientSale  РћР±С‰Р°СЏ СЃСѓРјРјР° РїРѕРєСѓРїРѕРє РєР»РёРµРЅС‚Р°
+//Balance Р‘Р°Р»Р°РЅСЃ РєР°СЂС‚С‹
+//DiscountBon РЎСѓРјРјР° РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё
+//DiscountGiC РЎСѓРјРјР° РѕРїР»Р°С‚С‹ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё
+//SumSalerI РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР°
+//SumSalerS РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР° Р·Р° С‚РµРєСѓС‰СѓСЋ СЃРјРµРЅСѓ
+//NameSaler Р¤РРћ РєР°СЃСЃРёСЂР°
+//CertSumm РЎСѓРјРјР° РІРІРµРґРµРЅРЅС‹С… СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ
+//DebtSumm РЎСѓРјРјР° РґРѕР»РіР° РїРѕ СЂР°СЃСЃСЂРѕС‡РєРµ
+//Available Р‘Р°Р»Р°РЅСЃ РєР°СЂС‚С‹, РґРѕСЃС‚СѓРїРЅС‹Р№ Рє СЃРїРёСЃР°РЅРёСЋ
 
 ///////////////////////////////////////////////////////////////////////////////
 //<-StopFragment
 
 //->StartFragment3
 function init() {
-	//V.5.0 от 12.10.2018
+	//V.5.0 РѕС‚ 12.10.2018
 	ScriptVersion = 49;
 	MinimalDllVersion = 2;
 	//<-StopFragment
@@ -47,7 +47,7 @@ function init() {
 	SumInstallment = 0;
 	SumNoInstallment = 0;
 
-	// Авто-обновление программного обеспечения
+	// РђРІС‚Рѕ-РѕР±РЅРѕРІР»РµРЅРёРµ РїСЂРѕРіСЂР°РјРјРЅРѕРіРѕ РѕР±РµСЃРїРµС‡РµРЅРёСЏ
 	Bonica = new ActiveXObject("AddIn.BonicaUpdate");
 	Bonica.FrontolInit(5);
 
@@ -55,19 +55,19 @@ function init() {
 	Bonica = new ActiveXObject("AddIn.Bonica");
 	Bonica.FrontolInit(5);
 
-	// закомментируйте эту строчку, если не нужно обновлять сценарий фронтол автомтаически
+	// Р·Р°РєРѕРјРјРµРЅС‚РёСЂСѓР№С‚Рµ СЌС‚Сѓ СЃС‚СЂРѕС‡РєСѓ, РµСЃР»Рё РЅРµ РЅСѓР¶РЅРѕ РѕР±РЅРѕРІР»СЏС‚СЊ СЃС†РµРЅР°СЂРёР№ С„СЂРѕРЅС‚РѕР» Р°РІС‚РѕРјС‚Р°РёС‡РµСЃРєРё
 	Bonica.UpdateFrontolScript();
 
 	if (!Bonica.SetFrontolScript(ScriptVersion, MinimalDllVersion))
-		frontol.actions.showMessage("Для работы сценария требуется обновление BonicaAddIn.dll до версии " + MinimalDllVersion + " или выше.", Icon.Error);
-	Bonica.SaveToLog("Фронтол инициализация", 0, "Лог скрипта");
+		frontol.actions.showMessage("Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃС†РµРЅР°СЂРёСЏ С‚СЂРµР±СѓРµС‚СЃСЏ РѕР±РЅРѕРІР»РµРЅРёРµ BonicaAddIn.dll РґРѕ РІРµСЂСЃРёРё " + MinimalDllVersion + " РёР»Рё РІС‹С€Рµ.", Icon.Error);
+	Bonica.SaveToLog("Р¤СЂРѕРЅС‚РѕР» РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 	if (Bonica.SalerAsCashier)
 		Bonica.UpdateListSellers(false);
-	Bonica.SaveToLog("Обновили список кассиров на сервере", 0, "Лог скрипта");
+	Bonica.SaveToLog("РћР±РЅРѕРІРёР»Рё СЃРїРёСЃРѕРє РєР°СЃСЃРёСЂРѕРІ РЅР° СЃРµСЂРІРµСЂРµ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 	Bonica.UpdateListWareGroup(true);
-	Bonica.SaveToLog("Обновили список групп товаров на сервере", 0, "Лог скрипта");
+	Bonica.SaveToLog("РћР±РЅРѕРІРёР»Рё СЃРїРёСЃРѕРє РіСЂСѓРїРї С‚РѕРІР°СЂРѕРІ РЅР° СЃРµСЂРІРµСЂРµ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 	Bonica.GetCertOnCash();
-	Bonica.SaveToLog("Запросили список сертификатов", 0, "Лог скрипта");
+	Bonica.SaveToLog("Р—Р°РїСЂРѕСЃРёР»Рё СЃРїРёСЃРѕРє СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 	//<-StopFragment
 	//->StartFragment5
 }
@@ -92,37 +92,37 @@ function afterOpenDocument() {
 	//<-StopFragment
 
 	//->StartFragment7
-	frontol.currentDocument.userValues.set("CardNumber", " "); //Номер карты
-	frontol.currentDocument.userValues.set("Phone", " "); //Номер телефона, который ввел кассир
-	frontol.currentDocument.userValues.set("FIO", ""); //ФИО
-	frontol.currentDocument.userValues.set("ClientPhone", ""); //Номер телефона клиента
-	frontol.currentDocument.userValues.set("ClientBDay", ""); //День рождения клиента
-	frontol.currentDocument.userValues.set("ClientSale", "0"); //Общая сумма покупок клиента
-	frontol.currentDocument.userValues.set("Balance", "0"); //Баланс
-	frontol.currentDocument.userValues.set("Available", "0"); //Доступно к списанию
-	frontol.currentDocument.userValues.set("DebtSumm", "0"); //Сумма долга
-	frontol.currentDocument.userValues.set("DiscountBon", "0"); //Сумма оплаты бонусами
-	frontol.currentDocument.userValues.set("DiscountGiC", "0"); //Сумма оплаты подарочными сертификатами
-	frontol.currentDocument.userValues.set("DiscountGiCI", "0"); //Сумма оплаты подарочными сертификатами фактическая
-	frontol.currentDocument.userValues.set("SumBeforeDisc", "0"); //Сумма документов до оплаты сертификатми
-	frontol.currentDocument.userValues.set("CertSumm", "0"); //Сумма оплаты подарочными сертификатами
-	frontol.currentDocument.userValues.set("AccrueBonuses", "0"); //Сумма начисленных бонусов по данному чеку (известна только после пробития чека)
-	frontol.currentDocument.userValues.set("DocType", frontol.currentDocument.type.name); //тип документа
-	// используется для печати информации после пробития основного чека
+	frontol.currentDocument.userValues.set("CardNumber", " "); //РќРѕРјРµСЂ РєР°СЂС‚С‹
+	frontol.currentDocument.userValues.set("Phone", " "); //РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°, РєРѕС‚РѕСЂС‹Р№ РІРІРµР» РєР°СЃСЃРёСЂ
+	frontol.currentDocument.userValues.set("FIO", ""); //Р¤РРћ
+	frontol.currentDocument.userValues.set("ClientPhone", ""); //РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РєР»РёРµРЅС‚Р°
+	frontol.currentDocument.userValues.set("ClientBDay", ""); //Р”РµРЅСЊ СЂРѕР¶РґРµРЅРёСЏ РєР»РёРµРЅС‚Р°
+	frontol.currentDocument.userValues.set("ClientSale", "0"); //РћР±С‰Р°СЏ СЃСѓРјРјР° РїРѕРєСѓРїРѕРє РєР»РёРµРЅС‚Р°
+	frontol.currentDocument.userValues.set("Balance", "0"); //Р‘Р°Р»Р°РЅСЃ
+	frontol.currentDocument.userValues.set("Available", "0"); //Р”РѕСЃС‚СѓРїРЅРѕ Рє СЃРїРёСЃР°РЅРёСЋ
+	frontol.currentDocument.userValues.set("DebtSumm", "0"); //РЎСѓРјРјР° РґРѕР»РіР°
+	frontol.currentDocument.userValues.set("DiscountBon", "0"); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё
+	frontol.currentDocument.userValues.set("DiscountGiC", "0"); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё
+	frontol.currentDocument.userValues.set("DiscountGiCI", "0"); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё С„Р°РєС‚РёС‡РµСЃРєР°СЏ
+	frontol.currentDocument.userValues.set("SumBeforeDisc", "0"); //РЎСѓРјРјР° РґРѕРєСѓРјРµРЅС‚РѕРІ РґРѕ РѕРїР»Р°С‚С‹ СЃРµСЂС‚РёС„РёРєР°С‚РјРё
+	frontol.currentDocument.userValues.set("CertSumm", "0"); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё
+	frontol.currentDocument.userValues.set("AccrueBonuses", "0"); //РЎСѓРјРјР° РЅР°С‡РёСЃР»РµРЅРЅС‹С… Р±РѕРЅСѓСЃРѕРІ РїРѕ РґР°РЅРЅРѕРјСѓ С‡РµРєСѓ (РёР·РІРµСЃС‚РЅР° С‚РѕР»СЊРєРѕ РїРѕСЃР»Рµ РїСЂРѕР±РёС‚РёСЏ С‡РµРєР°)
+	frontol.currentDocument.userValues.set("DocType", frontol.currentDocument.type.name); //С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°
+	// РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїРµС‡Р°С‚Рё РёРЅС„РѕСЂРјР°С†РёРё РїРѕСЃР»Рµ РїСЂРѕР±РёС‚РёСЏ РѕСЃРЅРѕРІРЅРѕРіРѕ С‡РµРєР°
 	//<-StopFragment
 
 
 	//->StartFragment8
 	if (Bonica.InetConnection()) {
-		Bonica.SaveToLog("При открытии документа есть связь с сервером", 0, "Лог скрипта");
+		Bonica.SaveToLog("РџСЂРё РѕС‚РєСЂС‹С‚РёРё РґРѕРєСѓРјРµРЅС‚Р° РµСЃС‚СЊ СЃРІСЏР·СЊ СЃ СЃРµСЂРІРµСЂРѕРј", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 		//<-StopFragment
 		//->StartFragment9
 
 		//<-StopFragment
 	} else {
 		//->StartFragment10
-		Bonica.SaveToLog("При открытии документа нет связи с сервером", 0, "Лог скрипта");
-		frontol.currentDocument.userValues.set("FIO", "Нет связи с сервером лояльности!"); //сообщение об ошибке связи с сервером
+		Bonica.SaveToLog("РџСЂРё РѕС‚РєСЂС‹С‚РёРё РґРѕРєСѓРјРµРЅС‚Р° РЅРµС‚ СЃРІСЏР·Рё СЃ СЃРµСЂРІРµСЂРѕРј", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.currentDocument.userValues.set("FIO", "РќРµС‚ СЃРІСЏР·Рё СЃ СЃРµСЂРІРµСЂРѕРј Р»РѕСЏР»СЊРЅРѕСЃС‚Рё!"); //СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ СЃРІСЏР·Рё СЃ СЃРµСЂРІРµСЂРѕРј
 		//<-StopFragment
 		//->StartFragment11
 	}
@@ -134,11 +134,11 @@ function afterOpenDocument() {
 			//<-StopFragment
 			//->StartFragment13
 			CardB = 0;
-			frontol.currentDocument.userValues.set("NameSaler", frontol.currentDocument.openUser.name); // Премия кассира за текущую смену
+			frontol.currentDocument.userValues.set("NameSaler", frontol.currentDocument.openUser.name); // РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР° Р·Р° С‚РµРєСѓС‰СѓСЋ СЃРјРµРЅСѓ
 			//			CardB = Bonica.GetTotalSalesSeller(frontol.currentDocument.openUser.code);
-			frontol.currentDocument.userValues.set("SumSalerI", "" + Math.round(CardB * 100) / 100); //Премия кассира
+			frontol.currentDocument.userValues.set("SumSalerI", "" + Math.round(CardB * 100) / 100); //РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР°
 			//			CardB = Bonica.GetTotalSalesSellerForSession(frontol.currentDocument.openUser.code, frontol.sessionNumber);
-			frontol.currentDocument.userValues.set("SumSalerS", "" + Math.round(CardB * 100) / 100); // Премия кассира за текущую смену
+			frontol.currentDocument.userValues.set("SumSalerS", "" + Math.round(CardB * 100) / 100); // РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР° Р·Р° С‚РµРєСѓС‰СѓСЋ СЃРјРµРЅСѓ
 			//<-StopFragment
 			//->StartFragment14
 		}
@@ -148,7 +148,7 @@ function afterOpenDocument() {
 
 	if ((frontol.currentDocument.type.code == 2) && (frontol.currentDocument.card.count > 0)) {
 		//<-StopFragment
-		// в случае возврата на основании, необходимо восстановить бонусную карту
+		// РІ СЃР»СѓС‡Р°Рµ РІРѕР·РІСЂР°С‚Р° РЅР° РѕСЃРЅРѕРІР°РЅРёРё, РЅРµРѕР±С…РѕРґРёРјРѕ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ Р±РѕРЅСѓСЃРЅСѓСЋ РєР°СЂС‚Сѓ
 		for (frontol.currentDocument.card.index = 1;
 			frontol.currentDocument.card.index <= frontol.currentDocument.card.count;
 			frontol.currentDocument.card.index++) {
@@ -156,13 +156,13 @@ function afterOpenDocument() {
 
 			if (CT == 1) {
 				CardNumber = frontol.currentDocument.card.value;
-				Bonica.CheckBonusCard(CardNumber); // проверка и регистрация карты
+				Bonica.CheckBonusCard(CardNumber); // РїСЂРѕРІРµСЂРєР° Рё СЂРµРіРёСЃС‚СЂР°С†РёСЏ РєР°СЂС‚С‹
 
 				if (Bonica.ErrorCode == 0) {
 					CardB = Bonica.CardBalance(CardNumber, 0);
 					if (Bonica.Alive == 0) {
-						Bonica.SaveToLog("Введенная карта неактивна.", 0, "Лог скрипта");
-						frontol.actions.showError("Введенная карта неактивна.");
+						Bonica.SaveToLog("Р’РІРµРґРµРЅРЅР°СЏ РєР°СЂС‚Р° РЅРµР°РєС‚РёРІРЅР°.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+						frontol.actions.showError("Р’РІРµРґРµРЅРЅР°СЏ РєР°СЂС‚Р° РЅРµР°РєС‚РёРІРЅР°.");
 					}
 					if (Bonica.ErrorCode == 0) {
 						var CardNumber = Bonica.CardNumber;
@@ -176,11 +176,11 @@ function afterOpenDocument() {
 						frontol.currentDocument.userValues.set("ClientBDay", "" + Bonica.BDay);
 						frontol.currentDocument.userValues.set("ClientSale", "" + Bonica.Sale);
 					} else {
-						Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
+						Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 						frontol.actions.showError(Bonica.ErrorDescription);
 					}
 				} else {
-					// Скорее всего нет интернета
+					// РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµС‚ РёРЅС‚РµСЂРЅРµС‚Р°
 					frontol.currentDocument.userValues.set("CardNumber", "" + CardNumber);
 				}
 				frontol.currentDocument.userValues.set("ThisReturn", "1");
@@ -194,7 +194,7 @@ function afterOpenDocument() {
 }
 
 function beforeCloseDocument() {
-	Bonica.SaveToLog("beforeCloseDocument", 0, "Лог скрипта");
+	Bonica.SaveToLog("beforeCloseDocument", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 	if ((frontol.currentDocument.type.code == 1) || (frontol.currentDocument.type.code == 2)) {
 		var CertSale = 0;
@@ -203,7 +203,7 @@ function beforeCloseDocument() {
 			frontol.currentDocument.position.index++) {
 			if ((frontol.currentDocument.position.storno == 0) &&
 				(frontol.currentDocument.position.quantity > 0)) {
-				// проверим на продажу сертификатов
+				// РїСЂРѕРІРµСЂРёРј РЅР° РїСЂРѕРґР°Р¶Сѓ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ
 				if (frontol.currentDocument.position.ware.code == (+Bonica.GiftCardCode)) {
 					CertSale = CertSale + 1;
 				}
@@ -212,28 +212,28 @@ function beforeCloseDocument() {
 
 		if (CertSale != 0) {
 			if (CertSale != frontol.currentDocument.position.count) {
-				Bonica.SaveToLog("Нельзя продавать сертификаты с товарами в одном чеке !", 0, "Лог скрипта");
-				frontol.actions.showError("Нельзя продавать сертификаты с товарами в одном чеке !");
+				Bonica.SaveToLog("РќРµР»СЊР·СЏ РїСЂРѕРґР°РІР°С‚СЊ СЃРµСЂС‚РёС„РёРєР°С‚С‹ СЃ С‚РѕРІР°СЂР°РјРё РІ РѕРґРЅРѕРј С‡РµРєРµ !", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РќРµР»СЊР·СЏ РїСЂРѕРґР°РІР°С‚СЊ СЃРµСЂС‚РёС„РёРєР°С‚С‹ СЃ С‚РѕРІР°СЂР°РјРё РІ РѕРґРЅРѕРј С‡РµРєРµ !");
 			}
 			sumdsc =  + frontol.currentDocument.userValues.get("DiscountBon");
 			if (sumdsc != 0) {
-				Bonica.SaveToLog("Подарочные сертификаты нельзя оплачивать бонусами", 0, "Лог скрипта");
-				frontol.actions.showError("Подарочные сертификаты нельзя оплачивать бонусами");
+				Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ Р±РѕРЅСѓСЃР°РјРё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ Р±РѕРЅСѓСЃР°РјРё");
 			}
 			sumdsc =  + frontol.currentDocument.userValues.get("DiscountGiC");
 			if (sumdsc != 0) {
-				Bonica.SaveToLog("Подарочные сертификаты нельзя оплачивать подарочными сертификатами", 0, "Лог скрипта");
-				frontol.actions.showError("Подарочные сертификаты нельзя оплачивать подарочными сертификатами");
+				Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё");
 			}
 			if (frontol.currentDocument.type.code != 1) {
-				Bonica.SaveToLog("Подарочные сертификаты нельзя возвращать", 0, "Лог скрипта");
-				frontol.actions.showError("Подарочные сертификаты нельзя возвращать");
+				Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РІРѕР·РІСЂР°С‰Р°С‚СЊ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РІРѕР·РІСЂР°С‰Р°С‚СЊ");
 			}
 		}
 
 		if (ThisInstallment)
 		{
-			// проверим на рассрочку
+			// РїСЂРѕРІРµСЂРёРј РЅР° СЂР°СЃСЃСЂРѕС‡РєСѓ
 			for (frontol.currentDocument.payment.index = 1;
 				frontol.currentDocument.payment.index <= frontol.currentDocument.payment.count;
 				frontol.currentDocument.payment.index++) {
@@ -245,59 +245,59 @@ function beforeCloseDocument() {
 			}
 			if (SumInstallment > 0) {
 				CN = frontol.currentDocument.userValues.get("CardNumber");
-				if ((CN.length > 1) && (( + frontol.currentDocument.userValues.get("CardConfirm")) == 1)) { // карта клиента выбрана
-					// установим по умолчанию признак предмета расчета
-					// 5 - продажа с первым взносом
-					// 6 - продажа без первого взноса
-					// 7 - гашение кредита
+				if ((CN.length > 1) && (( + frontol.currentDocument.userValues.get("CardConfirm")) == 1)) { // РєР°СЂС‚Р° РєР»РёРµРЅС‚Р° РІС‹Р±СЂР°РЅР°
+					// СѓСЃС‚Р°РЅРѕРІРёРј РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РїСЂРёР·РЅР°Рє РїСЂРµРґРјРµС‚Р° СЂР°СЃС‡РµС‚Р°
+					// 5 - РїСЂРѕРґР°Р¶Р° СЃ РїРµСЂРІС‹Рј РІР·РЅРѕСЃРѕРј
+					// 6 - РїСЂРѕРґР°Р¶Р° Р±РµР· РїРµСЂРІРѕРіРѕ РІР·РЅРѕСЃР°
+					// 7 - РіР°С€РµРЅРёРµ РєСЂРµРґРёС‚Р°
 					if (SumNoInstallment == 0) {
 						WshShell.Run(Bonica.Path + "AtolFiscalPrinterCommand.exe SetSettings 2 1 113 0 6", 2, true);
 					} else {
 						WshShell.Run(Bonica.Path + "AtolFiscalPrinterCommand.exe SetSettings 2 1 113 0 5", 2, true);
 					}
 				} else {
-					frontol.actions.showError("Нельзя продавать товар в рассрочку без выбранного клиента!");
+					frontol.actions.showError("РќРµР»СЊР·СЏ РїСЂРѕРґР°РІР°С‚СЊ С‚РѕРІР°СЂ РІ СЂР°СЃСЃСЂРѕС‡РєСѓ Р±РµР· РІС‹Р±СЂР°РЅРЅРѕРіРѕ РєР»РёРµРЅС‚Р°!");
 				}
 			}
 		}
 	}
 	
 	if (frontol.currentDocument.type.code == 23) {
-		// спишем долг
+		// СЃРїРёС€РµРј РґРѕР»Рі
 		var Dt = new Date();
 		var sDt = "" + Dt.getDate() + "." + (Dt.getMonth() + 1) + "." + Dt.getFullYear() + " " + Dt.getHours() + ":" + Dt.getMinutes() + ":" + Dt.getSeconds();
 		Bonica.CancelInstallmentFromCheque(frontol.currentDocument.userValues.get("CardNumber"), sDt, frontol.currentDocument.totalSum, frontol.sessionNumber);
 		if (Bonica.ErrorCode != 0) {
-			Bonica.SaveToLog(Bonica.ErrorDescription + Bonica.ErrorCode, 0, "Лог скрипта");
+			Bonica.SaveToLog(Bonica.ErrorDescription + Bonica.ErrorCode, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 			frontol.actions.showError(Bonica.ErrorDescription);
 		}
 		
 
-		// установим по умолчанию признак предмета расчета
-		// 5 - продажа с первым взносом
-		// 6 - продажа без первого взноса
-		// 7 - гашение кредита
+		// СѓСЃС‚Р°РЅРѕРІРёРј РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РїСЂРёР·РЅР°Рє РїСЂРµРґРјРµС‚Р° СЂР°СЃС‡РµС‚Р°
+		// 5 - РїСЂРѕРґР°Р¶Р° СЃ РїРµСЂРІС‹Рј РІР·РЅРѕСЃРѕРј
+		// 6 - РїСЂРѕРґР°Р¶Р° Р±РµР· РїРµСЂРІРѕРіРѕ РІР·РЅРѕСЃР°
+		// 7 - РіР°С€РµРЅРёРµ РєСЂРµРґРёС‚Р°
 		WshShell.Run(Bonica.Path + "AtolFiscalPrinterCommand.exe SetSettings 2 1 113 0 7", 2, true);
 	}
 
 }
 
 function afterCloseDocument() {
-	Bonica.SaveToLog("afterCloseDocument", 0, "Лог скрипта");
+	Bonica.SaveToLog("afterCloseDocument", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 	if ((frontol.currentDocument.type.code == 1) || (frontol.currentDocument.type.code == 2)) {
 		var CardNumber = frontol.currentDocument.userValues.get("CardNumber");
 		var Phone = "" + frontol.currentDocument.userValues.get("Phone");
 
-		Bonica.SaveToLog("CardNumber=" + CardNumber, 0, "Лог скрипта");
-		Bonica.SaveToLog("Phone=" + Phone, 0, "Лог скрипта");
+		Bonica.SaveToLog("CardNumber=" + CardNumber, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		Bonica.SaveToLog("Phone=" + Phone, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 		SummCardB = 0;
 		var Bonus = 0;
 		if (frontol.currentDocument.type.code == 2)
-			TextT = "Возврат ";
+			TextT = "Р’РѕР·РІСЂР°С‚ ";
 		else
-			TextT = "Покупка ";
+			TextT = "РџРѕРєСѓРїРєР° ";
 
 		var Dt = new Date();
 		var sDt = "" + Dt.getDate() + "." + (Dt.getMonth() + 1) + "." + Dt.getFullYear() + " " + Dt.getHours() + ":" + Dt.getMinutes() + ":" + Dt.getSeconds();
@@ -307,13 +307,13 @@ function afterCloseDocument() {
 			for (frontol.currentDocument.discountDoc.index = 1;
 				frontol.currentDocument.discountDoc.index <= frontol.currentDocument.discountDoc.count;
 				frontol.currentDocument.discountDoc.index++) {
-				if ((frontol.currentDocument.discountDoc.valueType == 0) && (frontol.currentDocument.discountDoc.type == 2) && (frontol.currentDocument.discountDoc.marketingAction.name == "Оплата бонусами")) {
-					Bonica.AccrueBonuses(CardNumber, frontol.currentDocument.discountDoc.value * Bonica.RateOfBonusesToRubles, "При возврате товара начислено " + frontol.currentDocument.discountDoc.value * Bonica.RateOfBonusesToRubles + " бонусов.", sDt, frontol.sessionNumber, frontol.currentDocument.number)
+				if ((frontol.currentDocument.discountDoc.valueType == 0) && (frontol.currentDocument.discountDoc.type == 2) && (frontol.currentDocument.discountDoc.marketingAction.name == "РћРїР»Р°С‚Р° Р±РѕРЅСѓСЃР°РјРё")) {
+					Bonica.AccrueBonuses(CardNumber, frontol.currentDocument.discountDoc.value * Bonica.RateOfBonusesToRubles, "РџСЂРё РІРѕР·РІСЂР°С‚Рµ С‚РѕРІР°СЂР° РЅР°С‡РёСЃР»РµРЅРѕ " + frontol.currentDocument.discountDoc.value * Bonica.RateOfBonusesToRubles + " Р±РѕРЅСѓСЃРѕРІ.", sDt, frontol.sessionNumber, frontol.currentDocument.number)
 					if (Bonica.ErrorCode != 0) {
-						Bonica.SaveToLog(Bonica.ErrorDescription + Bonica.ErrorCode, 0, "Лог скрипта");
+						Bonica.SaveToLog(Bonica.ErrorDescription + Bonica.ErrorCode, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 						frontol.actions.showError(Bonica.ErrorDescription + Bonica.ErrorCode);
 					} else {
-						frontol.currentDocument.userValues.set("DiscountBon", "" + frontol.currentDocument.discountDoc.value); //Сумма оплаты бонусами
+						frontol.currentDocument.userValues.set("DiscountBon", "" + frontol.currentDocument.discountDoc.value); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё
 						Bonica.CardBalance(CardNumber);
 						if (Bonica.ErrorCode == 0) {
 							frontol.currentDocument.userValues.set("Balance", "" + Bonica.Balance);
@@ -332,7 +332,7 @@ function afterCloseDocument() {
 			frontol.currentDocument.position.index++) {
 			if ((frontol.currentDocument.position.storno == 0) &&
 				(frontol.currentDocument.position.quantity > 0)) {
-				// проверим на продажу сертификатов
+				// РїСЂРѕРІРµСЂРёРј РЅР° РїСЂРѕРґР°Р¶Сѓ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ
 				if (frontol.currentDocument.position.ware.code == (+Bonica.GiftCardCode)) {
 					CertSale = CertSale + 1;
 				}
@@ -340,7 +340,7 @@ function afterCloseDocument() {
 		}
 
 		if (CertSale != 0) {
-			// спишем сертификаты
+			// СЃРїРёС€РµРј СЃРµСЂС‚РёС„РёРєР°С‚С‹
 			Bonica.BeginSaveDocument(4, 0, sDt, 3, 4, frontol.currentDocument.closeUser.name);
 			for (frontol.currentDocument.position.index = 1;
 				frontol.currentDocument.position.index <= frontol.currentDocument.position.count;
@@ -360,21 +360,21 @@ function afterCloseDocument() {
 			}
 			Bonica.EndSaveDocument(0);
 			if (Bonica.ErrorCode != 0) {
-				Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
-				Bonica.SaveToLog("Ошибка ! Создайте чек продажи сертификатов заново !", 0, "Лог скрипта");
-				frontol.actions.showError("Ошибка ! Создайте чек продажи сертификатов заново !");
+				Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				Bonica.SaveToLog("РћС€РёР±РєР° ! РЎРѕР·РґР°Р№С‚Рµ С‡РµРє РїСЂРѕРґР°Р¶Рё СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ Р·Р°РЅРѕРІРѕ !", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РћС€РёР±РєР° ! РЎРѕР·РґР°Р№С‚Рµ С‡РµРє РїСЂРѕРґР°Р¶Рё СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ Р·Р°РЅРѕРІРѕ !");
 			}
 		}
 
 		sumdsc =  + frontol.currentDocument.userValues.get("DiscountBon");
 		sumdsc1 =  + frontol.currentDocument.userValues.get("DiscountGiC");
 		sumrefund = sumdsc + sumdsc1;
-		// это изложение исключим
+		// СЌС‚Рѕ РёР·Р»РѕР¶РµРЅРёРµ РёСЃРєР»СЋС‡РёРј
 		sumrefund = 0;
 
-		Bonica.SaveToLog("sumdsc=" + sumdsc, 0, "Лог скрипта");
-		Bonica.SaveToLog("sumdsc1=" + sumdsc1, 0, "Лог скрипта");
-		Bonica.SaveToLog("sumrefund=" + sumrefund, 0, "Лог скрипта");
+		Bonica.SaveToLog("sumdsc=" + sumdsc, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		Bonica.SaveToLog("sumdsc1=" + sumdsc1, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		Bonica.SaveToLog("sumrefund=" + sumrefund, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 		Bonica.BeginSaveDocument(3, 0, sDt, frontol.sessionNumber, frontol.currentDocument.number, TextT, CardNumber, sTm, 0, 0, Phone, sumrefund);
 		for (frontol.currentDocument.position.index = 1;
@@ -434,29 +434,29 @@ function afterCloseDocument() {
 					CashierCode = frontol.currentDocument.closeUser.code;
 				}
 
-				// ограничение по цене
+				// РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ С†РµРЅРµ
 				//
 				var MinPrice = 0;
 				var BonusLimit = false;
-				if (Bonica.AccrueBonusLimitType == 1) // минимальная цена
+				if (Bonica.AccrueBonusLimitType == 1) // РјРёРЅРёРјР°Р»СЊРЅР°СЏ С†РµРЅР°
 				{
 					MinPrice = frontol.currentDocument.position.ware.minPrice;
 				}
 
-				if (Bonica.AccrueBonusLimitType == 2) // максимальная скидка
+				if (Bonica.AccrueBonusLimitType == 2) // РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃРєРёРґРєР°
 				{
 					MinPrice = frontol.currentDocument.position.ware.price - frontol.currentDocument.position.ware.price * frontol.currentDocument.position.ware.maxDiscount / 100;
 				}
-				if (Bonica.AccrueBonusLimitType == 3) // любое отклонение вызывает ограничение
+				if (Bonica.AccrueBonusLimitType == 3) // Р»СЋР±РѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ РІС‹Р·С‹РІР°РµС‚ РѕРіСЂР°РЅРёС‡РµРЅРёРµ
 				{
 					if ((frontol.currentDocument.position.ware.minPrice > 0) || (frontol.currentDocument.position.ware.price * frontol.currentDocument.position.ware.maxDiscount == 0))
 						BonusLimit = true;
 				}
 
-				Bonica.SaveToLog("MinPrice=" + MinPrice, 0, "Лог скрипта");
-				Bonica.SaveToLog("BonusLimit=" + BonusLimit, 0, "Лог скрипта");
+				Bonica.SaveToLog("MinPrice=" + MinPrice, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				Bonica.SaveToLog("BonusLimit=" + BonusLimit, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
-				// если была оплата сертификатами или бонусами, то надо восстановить стоимость товара
+				// РµСЃР»Рё Р±С‹Р»Р° РѕРїР»Р°С‚Р° СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё РёР»Рё Р±РѕРЅСѓСЃР°РјРё, С‚Рѕ РЅР°РґРѕ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ С‚РѕРІР°СЂР°
 				var TotalSum,
 				Sum,
 				Pay_Bonus = 0,
@@ -482,8 +482,8 @@ function afterCloseDocument() {
 					Sum = frontol.currentDocument.position.sum;
 				}
 
-				Bonica.SaveToLog("TotalSum=" + TotalSum, 0, "Лог скрипта");
-				Bonica.SaveToLog("Sum=" + Sum, 0, "Лог скрипта");
+				Bonica.SaveToLog("TotalSum=" + TotalSum, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				Bonica.SaveToLog("Sum=" + Sum, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 				var SalerSum;
 				SalerSum = 0;
@@ -520,17 +520,17 @@ function afterCloseDocument() {
 		Bonica.EndSaveDocument(1);
 
 		frontol.currentDocument.userValues.set("AccrueBonuses", "" + Bonica.Balance);
-		Bonica.SaveToLog("Начислено в результате проведения чека=" + Bonica.Balance, 0, "Лог скрипта");
+		Bonica.SaveToLog("РќР°С‡РёСЃР»РµРЅРѕ РІ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїСЂРѕРІРµРґРµРЅРёСЏ С‡РµРєР°=" + Bonica.Balance, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 		Bonica.CardBalance(CardNumber);
 		if (Bonica.ErrorCode == 0) {
-			Bonica.SaveToLog("Теперь баланс карты=" + Bonica.Balance, 0, "Лог скрипта");
+			Bonica.SaveToLog("РўРµРїРµСЂСЊ Р±Р°Р»Р°РЅСЃ РєР°СЂС‚С‹=" + Bonica.Balance, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 			frontol.currentDocument.userValues.set("Balance", "" + Bonica.Balance);
 			Bonica.CardBalance(CardNumber, 1);
 			frontol.currentDocument.userValues.set("Available", "" + Bonica.Balance);
 		}
 
 		if ((CertSale != 0) || (sumdsc1 != 0)) {
-			// если  в этом чеке были движения по сертификатам, то нужно обновить информацию о сертификатах на кассе
+			// РµСЃР»Рё  РІ СЌС‚РѕРј С‡РµРєРµ Р±С‹Р»Рё РґРІРёР¶РµРЅРёСЏ РїРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р°Рј, С‚Рѕ РЅСѓР¶РЅРѕ РѕР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРµСЂС‚РёС„РёРєР°С‚Р°С… РЅР° РєР°СЃСЃРµ
 			Bonica.GetCertOnCash();
 		}
 		if (ThisInstallment)
@@ -546,7 +546,7 @@ function afterCloseDocument() {
 	}
 
 	if ((frontol.currentDocument.type.code == 21) || (frontol.currentDocument.type.code == 22)) {
-		// перемещение сертификатов
+		// РїРµСЂРµРјРµС‰РµРЅРёРµ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ
 
 		var Dt = new Date();
 		var sDt = "" + Dt.getDate() + "." + (Dt.getMonth() + 1) + "." + Dt.getFullYear() + " " + Dt.getHours() + ":" + Dt.getMinutes() + ":" + Dt.getSeconds();
@@ -566,7 +566,7 @@ function afterCloseDocument() {
 
 		Bonica.EndSaveDocument(0);
 		if ((Bonica.ErrorCode > 0) && (BonicaErrorCode < 100)) {
-			Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
+			Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 			frontol.actions.showError(Bonica.ErrorDescription);
 		}
 		Bonica.GetCertOnCash();
@@ -583,14 +583,14 @@ function RegistrationByPhone() {
 	var CardNumber = "";
 	CN = frontol.currentDocument.userValues.get("CardNumber");
 	if (CN.length > 1) {
-		Bonica.SaveToLog("Допускается ввод не более одной карты.", 0, "Лог скрипта");
-		frontol.actions.showError("Допускается ввод не более одной карты.");
+		Bonica.SaveToLog("Р”РѕРїСѓСЃРєР°РµС‚СЃСЏ РІРІРѕРґ РЅРµ Р±РѕР»РµРµ РѕРґРЅРѕР№ РєР°СЂС‚С‹.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showError("Р”РѕРїСѓСЃРєР°РµС‚СЃСЏ РІРІРѕРґ РЅРµ Р±РѕР»РµРµ РѕРґРЅРѕР№ РєР°СЂС‚С‹.");
 	}
 	if (Bonica.RegistrationByPhone()) {
 		CardB = Bonica.CardBalance(Bonica.CardNumber, 0);
 		if (Bonica.Alive == 0) {
-			Bonica.SaveToLog("Введенная карта неактивна.", 0, "Лог скрипта");
-			frontol.actions.showError("Введенная карта неактивна.");
+			Bonica.SaveToLog("Р’РІРµРґРµРЅРЅР°СЏ РєР°СЂС‚Р° РЅРµР°РєС‚РёРІРЅР°.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+			frontol.actions.showError("Р’РІРµРґРµРЅРЅР°СЏ РєР°СЂС‚Р° РЅРµР°РєС‚РёРІРЅР°.");
 		}
 		if (Bonica.ErrorCode == 0) {
 			var CardNumber = Bonica.CardNumber;
@@ -607,11 +607,11 @@ function RegistrationByPhone() {
 			frontol.currentDocument.userValues.set("CardConfirm", "1");
 			var Dolg = Bonica.GetDebtClient(CardNumber, false);
 			frontol.currentDocument.userValues.set("DebtSumm", "" + Dolg);
-			Bonica.SaveToLog("CardNumber=" + CardNumber, 0, "Лог скрипта");
-			Bonica.SaveToLog("Bonica.Balance=" + Bonica.Balance, 0, "Лог скрипта");
-			Bonica.SaveToLog("Bonica.Fam" + Bonica.Fam + " " + Bonica.Im, 0, "Лог скрипта");
+			Bonica.SaveToLog("CardNumber=" + CardNumber, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+			Bonica.SaveToLog("Bonica.Balance=" + Bonica.Balance, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+			Bonica.SaveToLog("Bonica.Fam" + Bonica.Fam + " " + Bonica.Im, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 		} else {
-			Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
+			Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 			frontol.actions.showError(Bonica.ErrorDescription);
 		}
 	}
@@ -627,17 +627,17 @@ function BeforeAddCard(Card) {
 		//<-StopFragment
 		//->StartFragment16
 		if (CN.length > 1) {
-			Bonica.SaveToLog("Допускается ввод не более одной карты.", 0, "Лог скрипта");
-			frontol.actions.showError("Допускается ввод не более одной карты.");
+			Bonica.SaveToLog("Р”РѕРїСѓСЃРєР°РµС‚СЃСЏ РІРІРѕРґ РЅРµ Р±РѕР»РµРµ РѕРґРЅРѕР№ РєР°СЂС‚С‹.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+			frontol.actions.showError("Р”РѕРїСѓСЃРєР°РµС‚СЃСЏ РІРІРѕРґ РЅРµ Р±РѕР»РµРµ РѕРґРЅРѕР№ РєР°СЂС‚С‹.");
 		}
-		CardNumber = Bonica.CheckBonusCard(CardNumber); // проверка и регистрация карты
+		CardNumber = Bonica.CheckBonusCard(CardNumber); // РїСЂРѕРІРµСЂРєР° Рё СЂРµРіРёСЃС‚СЂР°С†РёСЏ РєР°СЂС‚С‹
 
 		//<-StopFragment
 		if (Bonica.ErrorCode == 0) {
 			CardB = Bonica.CardBalance(CardNumber, 0);
 			if (Bonica.Alive == 0) {
-				Bonica.SaveToLog("Введенная карта неактивна.", 0, "Лог скрипта");
-				frontol.actions.showError("Введенная карта неактивна.");
+				Bonica.SaveToLog("Р’РІРµРґРµРЅРЅР°СЏ РєР°СЂС‚Р° РЅРµР°РєС‚РёРІРЅР°.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("Р’РІРµРґРµРЅРЅР°СЏ РєР°СЂС‚Р° РЅРµР°РєС‚РёРІРЅР°.");
 			}
 			if (Bonica.ErrorCode == 0) {
 				var CardNumber = Bonica.CardNumber;
@@ -668,30 +668,30 @@ function BeforeAddCard(Card) {
 					}
 				}
 				frontol.currentDocument.userValues.set("DebtSumm", "" + Dolg);
-				Bonica.SaveToLog("CardNumber=" + CardNumber, 0, "Лог скрипта");
-				Bonica.SaveToLog("Bonica.Balance=" + Bonica.Balance, 0, "Лог скрипта");
-				Bonica.SaveToLog("Bonica.Fam" + Bonica.Fam + " " + Bonica.Im, 0, "Лог скрипта");
+				Bonica.SaveToLog("CardNumber=" + CardNumber, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				Bonica.SaveToLog("Bonica.Balance=" + Bonica.Balance, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				Bonica.SaveToLog("Bonica.Fam" + Bonica.Fam + " " + Bonica.Im, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 			} else {
-				Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
+				Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 				frontol.actions.showError(Bonica.ErrorDescription);
 			}
 		} else {
-			// Скорее всего нет интернета
+			// РЎРєРѕСЂРµРµ РІСЃРµРіРѕ РЅРµС‚ РёРЅС‚РµСЂРЅРµС‚Р°
 			frontol.currentDocument.userValues.set("CardNumber", "" + CardNumber);
 		}
 
 	} else
-		// это не бонусная карта, значит или продавца или сертификат
+		// СЌС‚Рѕ РЅРµ Р±РѕРЅСѓСЃРЅР°СЏ РєР°СЂС‚Р°, Р·РЅР°С‡РёС‚ РёР»Рё РїСЂРѕРґР°РІС†Р° РёР»Рё СЃРµСЂС‚РёС„РёРєР°С‚
 	{
 		if (CT == 4) {
-			// это карта продавца
+			// СЌС‚Рѕ РєР°СЂС‚Р° РїСЂРѕРґР°РІС†Р°
 			Bonica.GetProdParam(CardNumber);
-			frontol.currentDocument.userValues.set("NameSaler", Bonica.Fam); // Премия кассира за текущую смену
+			frontol.currentDocument.userValues.set("NameSaler", Bonica.Fam); // РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР° Р·Р° С‚РµРєСѓС‰СѓСЋ СЃРјРµРЅСѓ
 			CashierCode = Bonica.ParentNumber;
 			CardB = Bonica.GetTotalSalesSeller(CashierCode);
-			frontol.currentDocument.userValues.set("SumSalerI", "" + Math.round(CardB * 100) / 100); //Премия кассира
+			frontol.currentDocument.userValues.set("SumSalerI", "" + Math.round(CardB * 100) / 100); //РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР°
 			CardB = Bonica.GetTotalSalesSellerForSession(CashierCode, frontol.sessionNumber);
-			frontol.currentDocument.userValues.set("SumSalerS", "" + Math.round(CardB * 100) / 100); // Премия кассира за текущую смену
+			frontol.currentDocument.userValues.set("SumSalerS", "" + Math.round(CardB * 100) / 100); // РџСЂРµРјРёСЏ РєР°СЃСЃРёСЂР° Р·Р° С‚РµРєСѓС‰СѓСЋ СЃРјРµРЅСѓ
 
 
 			for (frontol.currentDocument.position.index = 1;
@@ -705,7 +705,7 @@ function BeforeAddCard(Card) {
 			}
 		} else {
 			if (CT == 3) {
-				// это подарочный сертификат
+				// СЌС‚Рѕ РїРѕРґР°СЂРѕС‡РЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚
 
 				Bonica.GetCertStatus(CardNumber);
 				if (Bonica.ErrorCode == 0) {
@@ -719,14 +719,14 @@ function BeforeAddCard(Card) {
 								frontol.currentDocument.userValues.set("DiscountGiC", "" + ( + frontol.currentDocument.userValues.get("DiscountGiC") + Bonica.Balance));
 								frontol.currentDocument.userValues.set("CertSumm", "" + Bonica.Balance);
 							} else
-								//								frontol.actions.showError("Данный сертификат непригоден для движения");
+								//								frontol.actions.showError("Р”Р°РЅРЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ РЅРµРїСЂРёРіРѕРґРµРЅ РґР»СЏ РґРІРёР¶РµРЅРёСЏ");
 								ShowCert(1);
 						}
 					} else {
 						if (Bonica.Alive == 4) {
 							var CurSumPay =  + frontol.currentDocument.userValues.get("DiscountBon");
 							if (CurSumPay == 0) {
-								refreshCertDisc(); // это для того чтобы проверить что мы в режиме регистрации
+								refreshCertDisc(); // СЌС‚Рѕ РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ РјС‹ РІ СЂРµР¶РёРјРµ СЂРµРіРёСЃС‚СЂР°С†РёРё
 								Bonica.SetCertStatus(CardNumber, 3, frontol.currentDocument.number);
 								if (Bonica.ErrorCode == 0) {
 									frontol.currentDocument.userValues.set("DiscountGiC", "" + ( + frontol.currentDocument.userValues.get("DiscountGiC") + Bonica.Balance));
@@ -734,12 +734,12 @@ function BeforeAddCard(Card) {
 									refreshCertDisc();
 
 								} else {
-									Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
+									Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 									frontol.actions.showError(Bonica.ErrorDescription);
 								}
 							} else {
-								Bonica.SaveToLog("Введена оплата бонусами. Оплата сертификатами невозможна.", 0, "Лог скрипта");
-								frontol.actions.showError("Введена оплата бонусами. Оплата сертификатами невозможна.");
+								Bonica.SaveToLog("Р’РІРµРґРµРЅР° РѕРїР»Р°С‚Р° Р±РѕРЅСѓСЃР°РјРё. РћРїР»Р°С‚Р° СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё РЅРµРІРѕР·РјРѕР¶РЅР°.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+								frontol.actions.showError("Р’РІРµРґРµРЅР° РѕРїР»Р°С‚Р° Р±РѕРЅСѓСЃР°РјРё. РћРїР»Р°С‚Р° СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё РЅРµРІРѕР·РјРѕР¶РЅР°.");
 							}
 
 						} else {
@@ -747,15 +747,15 @@ function BeforeAddCard(Card) {
 						}
 					}
 				} else {
-					Bonica.SaveToLog("Ошибка в подарочном сертификате, попробуйте считать карту заново", 0, "Лог скрипта");
-					frontol.actions.showError("Ошибка в подарочном сертификате, попробуйте считать карту заново");
+					Bonica.SaveToLog("РћС€РёР±РєР° РІ РїРѕРґР°СЂРѕС‡РЅРѕРј СЃРµСЂС‚РёС„РёРєР°С‚Рµ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃС‡РёС‚Р°С‚СЊ РєР°СЂС‚Сѓ Р·Р°РЅРѕРІРѕ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+					frontol.actions.showError("РћС€РёР±РєР° РІ РїРѕРґР°СЂРѕС‡РЅРѕРј СЃРµСЂС‚РёС„РёРєР°С‚Рµ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃС‡РёС‚Р°С‚СЊ РєР°СЂС‚Сѓ Р·Р°РЅРѕРІРѕ");
 				}
 
 			} else {
-				// незнакомые карты тоже попадают во фронтол
+				// РЅРµР·РЅР°РєРѕРјС‹Рµ РєР°СЂС‚С‹ С‚РѕР¶Рµ РїРѕРїР°РґР°СЋС‚ РІРѕ С„СЂРѕРЅС‚РѕР»
 
 				//frontol.actions.showMessage(""+CT, Icon.Error);
-				//frontol.actions.showError("Карта не распознана, попробуйте считать карту заново");
+				//frontol.actions.showError("РљР°СЂС‚Р° РЅРµ СЂР°СЃРїРѕР·РЅР°РЅР°, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃС‡РёС‚Р°С‚СЊ РєР°СЂС‚Сѓ Р·Р°РЅРѕРІРѕ");
 			}
 		}
 	}
@@ -766,8 +766,8 @@ function refreshCertDisc() {
 
 	sumdsc =  + frontol.currentDocument.userValues.get("DiscountBon");
 	if (sumdsc == 0) {
-		// сохраняем сумму исходную только до оплаты бонусами
-		// сумма оставшаяся после скидок
+		// СЃРѕС…СЂР°РЅСЏРµРј СЃСѓРјРјСѓ РёСЃС…РѕРґРЅСѓСЋ С‚РѕР»СЊРєРѕ РґРѕ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё
+		// СЃСѓРјРјР° РѕСЃС‚Р°РІС€Р°СЏСЃСЏ РїРѕСЃР»Рµ СЃРєРёРґРѕРє
 		sumBeforeDisc = 0;
 		sumAfterDisc = 0;
 		for (frontol.currentDocument.position.index = 1;
@@ -867,15 +867,15 @@ function RequestDiscountFromCloud() {
 					ClassifCode4 = frontol.currentDocument.position.ware.classifier.code;
 				}
 
-				// ограничение по цене
+				// РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ С†РµРЅРµ
 				//
 				var MinPrice = 0;
-				if (Bonica.AccrueBonusLimitType == 1) // минимальная цена
+				if (Bonica.AccrueBonusLimitType == 1) // РјРёРЅРёРјР°Р»СЊРЅР°СЏ С†РµРЅР°
 				{
 					MinPrice = frontol.currentDocument.position.ware.minPrice;
 				}
 
-				if (Bonica.AccrueBonusLimitType == 2) // максимальная скидка
+				if (Bonica.AccrueBonusLimitType == 2) // РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃРєРёРґРєР°
 				{
 					MinPrice = frontol.currentDocument.position.ware.price - frontol.currentDocument.position.ware.price * frontol.currentDocument.position.ware.maxDiscount / 100;
 				}
@@ -883,7 +883,7 @@ function RequestDiscountFromCloud() {
 				TotalSum = frontol.currentDocument.position.totalSum;
 				Sum = frontol.currentDocument.position.sum;
 
-				Bonica.SaveToLog("MinPrice=" + MinPrice, 0, "Лог скрипта");
+				Bonica.SaveToLog("MinPrice=" + MinPrice, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 				if (frontol.currentDocument.type.code == 2) {
 					Bonica.AddCLToDocument(frontol.currentDocument.position.id, ClassifCode, -frontol.currentDocument.position.quantity, 0, -Sum,
@@ -907,7 +907,7 @@ function AfterAddPosition(Position) {
 			var CertNominal = "";
 			var CertNominalV = 0;
 			while (CertNominalV <= 0) {
-				CertNominal = frontol.actions.inputString("Введите сумму сертификата", "", 10, 0);
+				CertNominal = frontol.actions.inputString("Р’РІРµРґРёС‚Рµ СЃСѓРјРјСѓ СЃРµСЂС‚РёС„РёРєР°С‚Р°", "", 10, 0);
 				if ((CertNominal == null) || (CertNominal == "")) {}
 				else {
 					CertNominal = CertNominal.replace(",", ".");
@@ -923,7 +923,7 @@ function AfterAddPosition(Position) {
 				}
 			}
 			Position.setSpecialPrice(CertNominalV, 1);
-		} // это сертификат
+		} // СЌС‚Рѕ СЃРµСЂС‚РёС„РёРєР°С‚
 	}
 	RequestDiscountFromCloud();
 	frontol.currentDocument.recalculateAllDiscounts();
@@ -975,20 +975,20 @@ function AfterAddPosition(Position) {
 		CashierCode = frontol.currentDocument.closeUser.code;
 	}
 
-	// ограничение по цене
+	// РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ С†РµРЅРµ
 	//
 	var MinPrice = 0;
 	var BonusLimit = false;
-	if (Bonica.AccrueBonusLimitType == 1) // минимальная цена
+	if (Bonica.AccrueBonusLimitType == 1) // РјРёРЅРёРјР°Р»СЊРЅР°СЏ С†РµРЅР°
 	{
 		MinPrice = Position.ware.minPrice;
 	}
 
-	if (Bonica.AccrueBonusLimitType == 2) // максимальная скидка
+	if (Bonica.AccrueBonusLimitType == 2) // РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃРєРёРґРєР°
 	{
 		MinPrice = Position.ware.price - Position.ware.price * Position.ware.maxDiscount / 100;
 	}
-	if (Bonica.AccrueBonusLimitType == 3) // любое отклонение вызывает ограничение
+	if (Bonica.AccrueBonusLimitType == 3) // Р»СЋР±РѕРµ РѕС‚РєР»РѕРЅРµРЅРёРµ РІС‹Р·С‹РІР°РµС‚ РѕРіСЂР°РЅРёС‡РµРЅРёРµ
 	{
 		if ((Position.ware.minPrice > 0) || (Position.ware.price * Position.ware.maxDiscount == 0))
 			BonusLimit = true;
@@ -1006,27 +1006,27 @@ function BeforeAddPosition(Position) {
 	StornoQuantity = Position.quantity;
 	StornoSum = Position.sum;
 	StornoTotalSum = Position.totalSum;
-	Bonica.SaveToLog("BeforeAddPosition", 0, "Лог скрипта");
+	Bonica.SaveToLog("BeforeAddPosition", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 	if (sumdsc != 0) {
-		Bonica.SaveToLog("Изменения невозможны.Введены платежи бонусами.", 0, "Лог скрипта");
-		frontol.actions.showError("Изменения невозможны.Введены платежи бонусами.");
+		Bonica.SaveToLog("РР·РјРµРЅРµРЅРёСЏ РЅРµРІРѕР·РјРѕР¶РЅС‹.Р’РІРµРґРµРЅС‹ РїР»Р°С‚РµР¶Рё Р±РѕРЅСѓСЃР°РјРё.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showError("РР·РјРµРЅРµРЅРёСЏ РЅРµРІРѕР·РјРѕР¶РЅС‹.Р’РІРµРґРµРЅС‹ РїР»Р°С‚РµР¶Рё Р±РѕРЅСѓСЃР°РјРё.");
 	}
 	sumdsc =  + frontol.currentDocument.userValues.get("DiscountGiC");
 	if (sumdsc != 0) {
-		Bonica.SaveToLog("Изменения невозможны.Введены платежи подарочным сертификатом.", 0, "Лог скрипта");
-		frontol.actions.showError("Изменения невозможны.Введены платежи подарочным сертификатом.");
+		Bonica.SaveToLog("РР·РјРµРЅРµРЅРёСЏ РЅРµРІРѕР·РјРѕР¶РЅС‹.Р’РІРµРґРµРЅС‹ РїР»Р°С‚РµР¶Рё РїРѕРґР°СЂРѕС‡РЅС‹Рј СЃРµСЂС‚РёС„РёРєР°С‚РѕРј.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showError("РР·РјРµРЅРµРЅРёСЏ РЅРµРІРѕР·РјРѕР¶РЅС‹.Р’РІРµРґРµРЅС‹ РїР»Р°С‚РµР¶Рё РїРѕРґР°СЂРѕС‡РЅС‹Рј СЃРµСЂС‚РёС„РёРєР°С‚РѕРј.");
 	}
 
-	// если это подарочный сертификат
+	// РµСЃР»Рё СЌС‚Рѕ РїРѕРґР°СЂРѕС‡РЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚
 	if (Position.ware.code == (+Bonica.GiftCardCode)) {
 		if ((frontol.currentDocument.type.code == 1)) {
 			if (Position.aspect.count > 0) {
-				//проверим на возможность продажи
+				//РїСЂРѕРІРµСЂРёРј РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРѕРґР°Р¶Рё
 				for (Position.aspect.index = 1;
 					Position.aspect.index <= Position.aspect.count;
 					Position.aspect.index++) {
-					Bonica.SaveToLog("Поищу номер сертификата по коду разреза " + Position.aspect.code, 0, "Лог скрипта");
+					Bonica.SaveToLog("РџРѕРёС‰Сѓ РЅРѕРјРµСЂ СЃРµСЂС‚РёС„РёРєР°С‚Р° РїРѕ РєРѕРґСѓ СЂР°Р·СЂРµР·Р° " + Position.aspect.code, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 					CertNumber = Bonica.AscpectToCard("" + Position.aspect.code);
 					if (CertNumber.length > 0) {
 						Bonica.GetCertStatus2(CertNumber);
@@ -1035,31 +1035,31 @@ function BeforeAddPosition(Position) {
 								//						frontol.currentDocument.userValues.set("DiscountGiC", "" + ( + frontol.currentDocument.userValues.get("DiscountGiC") + Bonica.Balance));
 								frontol.currentDocument.userValues.set("CertSumm", "" + Bonica.Balance);
 							} else {
-								Bonica.SaveToLog("Данный сертификат непригоден для продажи", 0, "Лог скрипта");
-								frontol.actions.showError("Данный сертификат непригоден для продажи");
+								Bonica.SaveToLog("Р”Р°РЅРЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ РЅРµРїСЂРёРіРѕРґРµРЅ РґР»СЏ РїСЂРѕРґР°Р¶Рё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+								frontol.actions.showError("Р”Р°РЅРЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ РЅРµРїСЂРёРіРѕРґРµРЅ РґР»СЏ РїСЂРѕРґР°Р¶Рё");
 							}
 						} else {
-							Bonica.SaveToLog("Невозможно проверить статус подарочного сетификата. Возможно отсутствует подключение к Интернет. Попробуйте повторить попытку.", 0, "Лог скрипта");
-							frontol.actions.showError("Невозможно проверить статус подарочного сетификата. Возможно отсутствует подключение к Интернет. Попробуйте повторить попытку.");
+							Bonica.SaveToLog("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ СЃС‚Р°С‚СѓСЃ РїРѕРґР°СЂРѕС‡РЅРѕРіРѕ СЃРµС‚РёС„РёРєР°С‚Р°. Р’РѕР·РјРѕР¶РЅРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє РРЅС‚РµСЂРЅРµС‚. РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕРІС‚РѕСЂРёС‚СЊ РїРѕРїС‹С‚РєСѓ.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+							frontol.actions.showError("РќРµРІРѕР·РјРѕР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ СЃС‚Р°С‚СѓСЃ РїРѕРґР°СЂРѕС‡РЅРѕРіРѕ СЃРµС‚РёС„РёРєР°С‚Р°. Р’РѕР·РјРѕР¶РЅРѕ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє РРЅС‚РµСЂРЅРµС‚. РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕРІС‚РѕСЂРёС‚СЊ РїРѕРїС‹С‚РєСѓ.");
 						}
 					} else {
-						Bonica.SaveToLog("Сертификат не числится на Вашей кассе!", 0, "Лог скрипта");
-						frontol.actions.showError("Сертификат не числится на Вашей кассе!");
+						Bonica.SaveToLog("РЎРµСЂС‚РёС„РёРєР°С‚ РЅРµ С‡РёСЃР»РёС‚СЃСЏ РЅР° Р’Р°С€РµР№ РєР°СЃСЃРµ!", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+						frontol.actions.showError("РЎРµСЂС‚РёС„РёРєР°С‚ РЅРµ С‡РёСЃР»РёС‚СЃСЏ РЅР° Р’Р°С€РµР№ РєР°СЃСЃРµ!");
 					}
 
-				} // перебор разрезов
+				} // РїРµСЂРµР±РѕСЂ СЂР°Р·СЂРµР·РѕРІ
 
 			} else {
-				Bonica.SaveToLog("Сертификат не выбран, повторите попытку!", 0, "Лог скрипта");
-				frontol.actions.showError("Сертификат не выбран, повторите попытку!");
+				Bonica.SaveToLog("РЎРµСЂС‚РёС„РёРєР°С‚ РЅРµ РІС‹Р±СЂР°РЅ, РїРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ!", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РЎРµСЂС‚РёС„РёРєР°С‚ РЅРµ РІС‹Р±СЂР°РЅ, РїРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ!");
 				Bonica.GetCertOnCash();
 			}
 
 		} else {
-			Bonica.SaveToLog("Подарочный сертификат можно использовать только в документе продажи.", 0, "Лог скрипта");
-			frontol.actions.showError("Подарочный сертификат можно использовать только в документе продажи.");
+			Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ РґРѕРєСѓРјРµРЅС‚Рµ РїСЂРѕРґР°Р¶Рё.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+			frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С‚РѕР»СЊРєРѕ РІ РґРѕРєСѓРјРµРЅС‚Рµ РїСЂРѕРґР°Р¶Рё.");
 		}
-	} // это сертификат
+	} // СЌС‚Рѕ СЃРµСЂС‚РёС„РёРєР°С‚
 
 	if (ThisInstallment)
 	{
@@ -1070,7 +1070,7 @@ function BeforeAddPosition(Position) {
 		else
 		{
 			Bonica.SetWarePaymentMode(Position.ware.code, 0, false);
-			frontol.actions.showError("Пожалуйста повторите добавление товара в чек.");
+			frontol.actions.showError("РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРІС‚РѕСЂРёС‚Рµ РґРѕР±Р°РІР»РµРЅРёРµ С‚РѕРІР°СЂР° РІ С‡РµРє.");
 		}
 	}
 }
@@ -1078,10 +1078,10 @@ function BeforeAddPosition(Position) {
 function DiscountBon() {
 	var sumdsc =  + frontol.currentDocument.userValues.get("DiscountBon");
 	if ((frontol.currentDocument.type.code == 1) || (frontol.currentDocument.type.code == 2)) {
-		Bonica.SaveToLog("Фронтол попросил сумму оплаты бонусами=" + sumdsc, 0, "Лог скрипта");
+		Bonica.SaveToLog("Р¤СЂРѕРЅС‚РѕР» РїРѕРїСЂРѕСЃРёР» СЃСѓРјРјСѓ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё=" + sumdsc, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 		return sumdsc;
 	} else {
-		Bonica.SaveToLog("Фронтол попросил сумму оплаты бонусами=0", 0, "Лог скрипта");
+		Bonica.SaveToLog("Р¤СЂРѕРЅС‚РѕР» РїРѕРїСЂРѕСЃРёР» СЃСѓРјРјСѓ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё=0", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 		return 0;
 	}
 }
@@ -1114,7 +1114,7 @@ function beforeAddPayment(Payment) {
 			frontol.currentDocument.position.index++) {
 			if ((frontol.currentDocument.position.storno == 0) &&
 				(frontol.currentDocument.position.quantity > 0)) {
-				// проверим на продажу сертификатов
+				// РїСЂРѕРІРµСЂРёРј РЅР° РїСЂРѕРґР°Р¶Сѓ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ
 				if (frontol.currentDocument.position.ware.code == (+Bonica.GiftCardCode)) {
 					CertSale = CertSale + 1;
 				}
@@ -1123,22 +1123,22 @@ function beforeAddPayment(Payment) {
 
 		if (CertSale != 0) {
 			if (CertSale != frontol.currentDocument.position.count) {
-				Bonica.SaveToLog("Нельзя продавать сертификаты с товарами в одном чеке !", 0, "Лог скрипта");
-				frontol.actions.showError("Нельзя продавать сертификаты с товарами в одном чеке !");
+				Bonica.SaveToLog("РќРµР»СЊР·СЏ РїСЂРѕРґР°РІР°С‚СЊ СЃРµСЂС‚РёС„РёРєР°С‚С‹ СЃ С‚РѕРІР°СЂР°РјРё РІ РѕРґРЅРѕРј С‡РµРєРµ !", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РќРµР»СЊР·СЏ РїСЂРѕРґР°РІР°С‚СЊ СЃРµСЂС‚РёС„РёРєР°С‚С‹ СЃ С‚РѕРІР°СЂР°РјРё РІ РѕРґРЅРѕРј С‡РµРєРµ !");
 			}
 			sumdsc =  + frontol.currentDocument.userValues.get("DiscountBon");
 			if (sumdsc != 0) {
-				Bonica.SaveToLog("Подарочные сертификаты нельзя оплачивать бонусами", 0, "Лог скрипта");
-				frontol.actions.showError("Подарочные сертификаты нельзя оплачивать бонусами");
+				Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ Р±РѕРЅСѓСЃР°РјРё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ Р±РѕРЅСѓСЃР°РјРё");
 			}
 			sumdsc =  + frontol.currentDocument.userValues.get("DiscountGiC");
 			if (sumdsc != 0) {
-				Bonica.SaveToLog("Подарочные сертификаты нельзя оплачивать подарочными сертификатами", 0, "Лог скрипта");
-				frontol.actions.showError("Подарочные сертификаты нельзя оплачивать подарочными сертификатами");
+				Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РѕРїР»Р°С‡РёРІР°С‚СЊ РїРѕРґР°СЂРѕС‡РЅС‹РјРё СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё");
 			}
 			if (frontol.currentDocument.type.code != 1) {
-				Bonica.SaveToLog("Подарочные сертификаты нельзя возвращать", 0, "Лог скрипта");
-				frontol.actions.showError("Подарочные сертификаты нельзя возвращать");
+				Bonica.SaveToLog("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РІРѕР·РІСЂР°С‰Р°С‚СЊ", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("РџРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹ РЅРµР»СЊР·СЏ РІРѕР·РІСЂР°С‰Р°С‚СЊ");
 			}
 		}
 
@@ -1147,18 +1147,18 @@ function beforeAddPayment(Payment) {
 			for (frontol.currentDocument.discountDoc.index = 1;
 				frontol.currentDocument.discountDoc.index <= frontol.currentDocument.discountDoc.count;
 				frontol.currentDocument.discountDoc.index++) {
-				if ((frontol.currentDocument.discountDoc.valueType == 0) && (frontol.currentDocument.discountDoc.type == 2) && (frontol.currentDocument.discountDoc.marketingAction.name == "Оплата бонусами")) {
+				if ((frontol.currentDocument.discountDoc.valueType == 0) && (frontol.currentDocument.discountDoc.type == 2) && (frontol.currentDocument.discountDoc.marketingAction.name == "РћРїР»Р°С‚Р° Р±РѕРЅСѓСЃР°РјРё")) {
 					sumdsc1 = sumdsc1 + frontol.currentDocument.discountDoc.value;
 				}
 			}
 			if (sumdsc != sumdsc1) {
-				Bonica.SaveToLog("Расхождение между выбранной суммой оплаты =" + sumdsc + ", и реальной суммой =" + sumdsc1, 0, "Лог скрипта");
-				frontol.actions.showError("Чтобы продолжить, пожалуйста введите сумму оплаты бонусами = " + sumdsc1 + "\nВозможно причина в настроенных округлениях.");
+				Bonica.SaveToLog("Р Р°СЃС…РѕР¶РґРµРЅРёРµ РјРµР¶РґСѓ РІС‹Р±СЂР°РЅРЅРѕР№ СЃСѓРјРјРѕР№ РѕРїР»Р°С‚С‹ =" + sumdsc + ", Рё СЂРµР°Р»СЊРЅРѕР№ СЃСѓРјРјРѕР№ =" + sumdsc1, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+				frontol.actions.showError("Р§С‚РѕР±С‹ РїСЂРѕРґРѕР»Р¶РёС‚СЊ, РїРѕР¶Р°Р»СѓР№СЃС‚Р° РІРІРµРґРёС‚Рµ СЃСѓРјРјСѓ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё = " + sumdsc1 + "\nР’РѕР·РјРѕР¶РЅРѕ РїСЂРёС‡РёРЅР° РІ РЅР°СЃС‚СЂРѕРµРЅРЅС‹С… РѕРєСЂСѓРіР»РµРЅРёСЏС….");
 			}
 
 		}
 		if (Payment.type.code == Bonica.InstallmentCode) {
-			if (!ThisInstallment) frontol.actions.showError("Разрешается только в чеке рассрочки");
+			if (!ThisInstallment) frontol.actions.showError("Р Р°Р·СЂРµС€Р°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РІ С‡РµРєРµ СЂР°СЃСЃСЂРѕС‡РєРё");
 			if (frontol.currentDocument.type.code != 2)
 			{
 				var CardNumber = frontol.currentDocument.userValues.get("CardNumber");
@@ -1169,18 +1169,18 @@ function beforeAddPayment(Payment) {
 			}
 		}
 	}
-	//	Bonica.AddPayment(Payment.type.сode, Payment.type.name, Payment.sumInBaseCurrency);
+	//	Bonica.AddPayment(Payment.type.СЃode, Payment.type.name, Payment.sumInBaseCurrency);
 
 }
 
 function BeforeCancelDocument() {
 
-	Bonica.SaveToLog("Попытка отменить документ", 0, "Лог скрипта");
+	Bonica.SaveToLog("РџРѕРїС‹С‚РєР° РѕС‚РјРµРЅРёС‚СЊ РґРѕРєСѓРјРµРЅС‚", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 	if ((frontol.currentDocument.type.code == 1) || (frontol.currentDocument.type.code == 2)) {
 		var CurSumPay =  + frontol.currentDocument.userValues.get("DiscountGiC");
 		if (CurSumPay != 0) {
-			// отменить все подарочные сертификаты
+			// РѕС‚РјРµРЅРёС‚СЊ РІСЃРµ РїРѕРґР°СЂРѕС‡РЅС‹Рµ СЃРµСЂС‚РёС„РёРєР°С‚С‹
 			for (frontol.currentDocument.card.index = 1;
 				frontol.currentDocument.card.index <= frontol.currentDocument.card.count;
 				frontol.currentDocument.card.index++) {
@@ -1188,7 +1188,7 @@ function BeforeCancelDocument() {
 				if (Bonica.ErrorCode == 0) {
 					Bonica.SetCertStatus(frontol.currentDocument.card.value, 4, frontol.currentDocument.number);
 					if (Bonica.ErrorCode != 0) {
-						Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Лог скрипта");
+						Bonica.SaveToLog(Bonica.ErrorDescription, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 						frontol.actions.showError(Bonica.ErrorDescription);
 					}
 				}
@@ -1199,9 +1199,9 @@ function BeforeCancelDocument() {
 		CurSumPay =  + frontol.currentDocument.userValues.get("DiscountBon");
 		if (CurSumPay != 0) {
 			Bonica.CancelPayList();
-			frontol.currentDocument.userValues.set("DiscountBon", "" + Bonica.PayCancelSumm); //Сумма оплаты бонусами
+			frontol.currentDocument.userValues.set("DiscountBon", "" + Bonica.PayCancelSumm); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё
 			if (Bonica.PayCancelSumm != 0)
-				frontol.actions.showError("Не удалось сторнировать оплаты бонусами!");
+				frontol.actions.showError("РќРµ СѓРґР°Р»РѕСЃСЊ СЃС‚РѕСЂРЅРёСЂРѕРІР°С‚СЊ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё!");
 		}
 
 		var CardNumber = frontol.currentDocument.userValues.get("CardNumber");
@@ -1255,15 +1255,15 @@ function BeforeCancelDocument() {
 					ClassifCode4 = frontol.currentDocument.position.ware.classifier.code;
 				}
 
-				// ограничение по цене
+				// РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ С†РµРЅРµ
 				//
 				var MinPrice = 0;
-				if (Bonica.AccrueBonusLimitType == 1) // минимальная цена
+				if (Bonica.AccrueBonusLimitType == 1) // РјРёРЅРёРјР°Р»СЊРЅР°СЏ С†РµРЅР°
 				{
 					MinPrice = frontol.currentDocument.position.ware.minPrice;
 				}
 
-				if (Bonica.AccrueBonusLimitType == 2) // максимальная скидка
+				if (Bonica.AccrueBonusLimitType == 2) // РјР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃРєРёРґРєР°
 				{
 					MinPrice = frontol.currentDocument.position.ware.price - frontol.currentDocument.position.ware.price * frontol.currentDocument.position.ware.maxDiscount / 100;
 				}
@@ -1271,7 +1271,7 @@ function BeforeCancelDocument() {
 				TotalSum = frontol.currentDocument.position.totalSum;
 				Sum = frontol.currentDocument.position.sum;
 
-				Bonica.SaveToLog("MinPrice=" + MinPrice, 0, "Лог скрипта");
+				Bonica.SaveToLog("MinPrice=" + MinPrice, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 
 				if (frontol.currentDocument.type.code == 2) {
 					Bonica.AddCLToDocument(frontol.currentDocument.position.id, ClassifCode, -frontol.currentDocument.position.quantity, 0, -Sum,
@@ -1301,49 +1301,49 @@ function PrintPinCode() {
 function ShowCert(CMode) {
 	var State = "";
 	if (Bonica.Alive == 1)
-		State = "не активен";
+		State = "РЅРµ Р°РєС‚РёРІРµРЅ";
 	else {
 		if (Bonica.Alive == 2)
-			State = "не на кассе";
+			State = "РЅРµ РЅР° РєР°СЃСЃРµ";
 		else {
 			if (Bonica.Alive == 3)
-				State = "на кассе";
+				State = "РЅР° РєР°СЃСЃРµ";
 			else {
 				if (Bonica.Alive == 4)
-					State = "у покупателя";
+					State = "Сѓ РїРѕРєСѓРїР°С‚РµР»СЏ";
 			}
 		}
 	}
 	if (CMode == 1) {
-		Bonica.SaveToLog("Нельзя !" + "Номер " + Bonica.CardNumber + "Статус " + State, 0, "Лог скрипта");
-		frontol.actions.showError("Нельзя !" + "\nНомер " + Bonica.CardNumber + "\nСтатус " + State);
+		Bonica.SaveToLog("РќРµР»СЊР·СЏ !" + "РќРѕРјРµСЂ " + Bonica.CardNumber + "РЎС‚Р°С‚СѓСЃ " + State, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showError("РќРµР»СЊР·СЏ !" + "\nРќРѕРјРµСЂ " + Bonica.CardNumber + "\nРЎС‚Р°С‚СѓСЃ " + State);
 	} else {
-		Bonica.SaveToLog("Нельзя !" + "Номер " + Bonica.CardNumber + "Статус " + State, 0, "Лог скрипта");
-		frontol.actions.showMessage("Нельзя !" + "\nНомер " + Bonica.CardNumber + "\nСтатус " + State);
+		Bonica.SaveToLog("РќРµР»СЊР·СЏ !" + "РќРѕРјРµСЂ " + Bonica.CardNumber + "РЎС‚Р°С‚СѓСЃ " + State, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showMessage("РќРµР»СЊР·СЏ !" + "\nРќРѕРјРµСЂ " + Bonica.CardNumber + "\nРЎС‚Р°С‚СѓСЃ " + State);
 	}
 }
 
 function CheckOpenDocument() {
 	if (frontol.currentDocument == null) {
-		Bonica.SaveToLog("Нельзя. Чек не открыт. Добавьте товар в чек и повторите.", 0, "Лог скрипта");
-		frontol.actions.showError("Нельзя. Чек не открыт. Добавьте товар в чек и повторите.");
+		Bonica.SaveToLog("РќРµР»СЊР·СЏ. Р§РµРє РЅРµ РѕС‚РєСЂС‹С‚. Р”РѕР±Р°РІСЊС‚Рµ С‚РѕРІР°СЂ РІ С‡РµРє Рё РїРѕРІС‚РѕСЂРёС‚Рµ.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showError("РќРµР»СЊР·СЏ. Р§РµРє РЅРµ РѕС‚РєСЂС‹С‚. Р”РѕР±Р°РІСЊС‚Рµ С‚РѕРІР°СЂ РІ С‡РµРє Рё РїРѕРІС‚РѕСЂРёС‚Рµ.");
 	}
 }
 
 function CheckPhoneNumber() {
-	if (( + frontol.currentDocument.userValues.get("CardConfirm")) == 0) { // наличие карты не подтверждено
+	if (( + frontol.currentDocument.userValues.get("CardConfirm")) == 0) { // РЅР°Р»РёС‡РёРµ РєР°СЂС‚С‹ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРѕ
 		var Phone = "" + frontol.currentDocument.userValues.get("Phone");
 		if (Phone.length == 10) {
 			if (Bonica.CheckPhoneNumber(Phone))
 				frontol.currentDocument.userValues.set("CardConfirm", "1");
 		} else
-			frontol.actions.showError("Нельзя. Номер телефона не введен.");
+			frontol.actions.showError("РќРµР»СЊР·СЏ. РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РЅРµ РІРІРµРґРµРЅ.");
 	}
 }
 
 function InputPhone() {
 	CheckOpenDocument();
-	var Phone = frontol.actions.inputString("Ввести номер телефона, начиная с 9:", "", 10, 0);
+	var Phone = frontol.actions.inputString("Р’РІРµСЃС‚Рё РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°, РЅР°С‡РёРЅР°СЏ СЃ 9:", "", 10, 0);
 	if (Phone == null)
 		Phone = "";
 	if (Phone.length == 10) {
@@ -1377,7 +1377,7 @@ function InputPhone() {
 			}
 		} else {
 			if (Bonica.ErrorCode > 99) {
-				// если нет интернета, то просто записываем номер телефона
+				// РµСЃР»Рё РЅРµС‚ РёРЅС‚РµСЂРЅРµС‚Р°, С‚Рѕ РїСЂРѕСЃС‚Рѕ Р·Р°РїРёСЃС‹РІР°РµРј РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°
 
 
 			} else {
@@ -1387,28 +1387,28 @@ function InputPhone() {
 		}
 	} else {
 		Phone = "";
-		frontol.actions.showMessage("Неверный номер телефона", Icon.Error);
+		frontol.actions.showMessage("РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°", Icon.Error);
 	}
 	frontol.currentDocument.userValues.set("Phone", Phone);
 }
 
 function InstallmentMode()
 {
-	if (frontol.currentDocument == null) frontol.actions.showError("Сначала считайте карту клиента !", Icon.Error);
+	if (frontol.currentDocument == null) frontol.actions.showError("РЎРЅР°С‡Р°Р»Р° СЃС‡РёС‚Р°Р№С‚Рµ РєР°СЂС‚Сѓ РєР»РёРµРЅС‚Р° !", Icon.Error);
 
 	if ((frontol.currentDocument.type.code == 1) || (frontol.currentDocument.type.code == 2)) {
 		if (frontol.currentDocument.quantityPositions == 0)
 		{
 			if (ThisInstallment)
 			{
-				frontol.currentDocument.userValues.set("DocType", frontol.currentDocument.type.name); //тип документа
+				frontol.currentDocument.userValues.set("DocType", frontol.currentDocument.type.name); //С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°
 				ThisInstallment=false;	
 			}
 			else
 			{
 				if (frontol.currentDocument.type.code == 2)
 				{
-					frontol.currentDocument.userValues.set("DocType", "Возврат рассрочки"); //тип документа
+					frontol.currentDocument.userValues.set("DocType", "Р’РѕР·РІСЂР°С‚ СЂР°СЃСЃСЂРѕС‡РєРё"); //С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°
 					var CardNumber = frontol.currentDocument.userValues.get("CardNumber");
 					Bonica.InstallmentCancel(CardNumber, "", true);
 					if (Bonica.ErrorCode == 0) {
@@ -1423,44 +1423,44 @@ function InstallmentMode()
 				}
 				else
 				{
-					frontol.currentDocument.userValues.set("DocType", "Рассрочка"); //тип документа
+					frontol.currentDocument.userValues.set("DocType", "Р Р°СЃСЃСЂРѕС‡РєР°"); //С‚РёРї РґРѕРєСѓРјРµРЅС‚Р°
 				}
 				ThisInstallment=true;	
 			}
 		}
 		else
 		{
-			frontol.actions.showMessage("Сначала удалите все позиции из чека !", Icon.Error);
+			frontol.actions.showMessage("РЎРЅР°С‡Р°Р»Р° СѓРґР°Р»РёС‚Рµ РІСЃРµ РїРѕР·РёС†РёРё РёР· С‡РµРєР° !", Icon.Error);
 		}
 	}
 }
 
 function InputPay() {
 	CheckOpenDocument();
-	Bonica.SaveToLog("Запуск ввода оплаты бонусами", 0, "Лог скрипта");
-	Bonica.SaveToLog("frontol.currentDocument.totalSum=" + frontol.currentDocument.totalSum, 0, "Лог скрипта");
-	refreshCertDisc(); // это для того чтобы проверить что мы в режиме регистрации
-	Bonica.SaveToLog("frontol.currentDocument.totalSum=" + frontol.currentDocument.totalSum, 0, "Лог скрипта");
+	Bonica.SaveToLog("Р—Р°РїСѓСЃРє РІРІРѕРґР° РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+	Bonica.SaveToLog("frontol.currentDocument.totalSum=" + frontol.currentDocument.totalSum, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+	refreshCertDisc(); // СЌС‚Рѕ РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ РїСЂРѕРІРµСЂРёС‚СЊ С‡С‚Рѕ РјС‹ РІ СЂРµР¶РёРјРµ СЂРµРіРёСЃС‚СЂР°С†РёРё
+	Bonica.SaveToLog("frontol.currentDocument.totalSum=" + frontol.currentDocument.totalSum, 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
 	var CurSumPay =  + frontol.currentDocument.userValues.get("DiscountGiC");
-	if (( + frontol.currentDocument.userValues.get("ThisReturn")) == 0) { // это не возврат чека на основании другого документа
-		if (CurSumPay == 0) { // только, если нет оплаты сертификатами
+	if (( + frontol.currentDocument.userValues.get("ThisReturn")) == 0) { // СЌС‚Рѕ РЅРµ РІРѕР·РІСЂР°С‚ С‡РµРєР° РЅР° РѕСЃРЅРѕРІР°РЅРёРё РґСЂСѓРіРѕРіРѕ РґРѕРєСѓРјРµРЅС‚Р°
+		if (CurSumPay == 0) { // С‚РѕР»СЊРєРѕ, РµСЃР»Рё РЅРµС‚ РѕРїР»Р°С‚С‹ СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё
 
-			if ((Bonica.ConfirmCard) && (( + frontol.currentDocument.userValues.get("CardConfirm")) != 1)) { // наличие карты не подтверждено
+			if ((Bonica.ConfirmCard) && (( + frontol.currentDocument.userValues.get("CardConfirm")) != 1)) { // РЅР°Р»РёС‡РёРµ РєР°СЂС‚С‹ РЅРµ РїРѕРґС‚РІРµСЂР¶РґРµРЅРѕ
 				var Phone = "" + frontol.currentDocument.userValues.get("Phone");
 				if (Phone.length == 10) {
 					if (Bonica.CheckPhoneNumber(Phone))
 						frontol.currentDocument.userValues.set("CardConfirm", "1");
 					else {
-						Bonica.SaveToLog("Для оплаты бонусами необходимо подтвердить наличие бонусной карты.", 0, "Лог скрипта");
-						frontol.actions.showError("Для оплаты бонусами необходимо подтвердить наличие бонусной карты.");
+						Bonica.SaveToLog("Р”Р»СЏ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕРґС‚РІРµСЂРґРёС‚СЊ РЅР°Р»РёС‡РёРµ Р±РѕРЅСѓСЃРЅРѕР№ РєР°СЂС‚С‹.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+						frontol.actions.showError("Р”Р»СЏ РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё РЅРµРѕР±С…РѕРґРёРјРѕ РїРѕРґС‚РІРµСЂРґРёС‚СЊ РЅР°Р»РёС‡РёРµ Р±РѕРЅСѓСЃРЅРѕР№ РєР°СЂС‚С‹.");
 					}
 				} else {
-					Bonica.SaveToLog("Нельзя. Номер телефона не введен.", 0, "Лог скрипта");
-					frontol.actions.showError("Нельзя. Номер телефона не введен.");
+					Bonica.SaveToLog("РќРµР»СЊР·СЏ. РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РЅРµ РІРІРµРґРµРЅ.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+					frontol.actions.showError("РќРµР»СЊР·СЏ. РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РЅРµ РІРІРµРґРµРЅ.");
 				}
 			}
 			var CardNumber = frontol.currentDocument.userValues.get("CardNumber");
-			// Подсчитаем сумму документа с ограничениями
+			// РџРѕРґСЃС‡РёС‚Р°РµРј СЃСѓРјРјСѓ РґРѕРєСѓРјРµРЅС‚Р° СЃ РѕРіСЂР°РЅРёС‡РµРЅРёСЏРјРё
 			sumStop = 0;
 			sumDoc = 0;
 			for (frontol.currentDocument.position.index = 1;
@@ -1468,8 +1468,8 @@ function InputPay() {
 				frontol.currentDocument.position.index++) {
 				if ((frontol.currentDocument.position.storno == 0) &&
 					(frontol.currentDocument.position.quantity > 0)) {
-					sum1 = frontol.currentDocument.position.ware.minPrice * frontol.currentDocument.position.quantity; // ограничение по минимальной цене
-					sum2 = frontol.currentDocument.position.sum - frontol.currentDocument.position.sum * frontol.currentDocument.position.ware.maxDiscount / 100; //ограничение по максимальной скидке
+					sum1 = frontol.currentDocument.position.ware.minPrice * frontol.currentDocument.position.quantity; // РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ РјРёРЅРёРјР°Р»СЊРЅРѕР№ С†РµРЅРµ
+					sum2 = frontol.currentDocument.position.sum - frontol.currentDocument.position.sum * frontol.currentDocument.position.ware.maxDiscount / 100; //РѕРіСЂР°РЅРёС‡РµРЅРёРµ РїРѕ РјР°РєСЃРёРјР°Р»СЊРЅРѕР№ СЃРєРёРґРєРµ
 					sumDoc = sumDoc + frontol.currentDocument.position.totalSum;
 					if (sum1 > sum2)
 						sumStop = sumStop + sum1;
@@ -1478,7 +1478,7 @@ function InputPay() {
 				}
 			}
 			Bonica.InputPayList(frontol.currentDocument.number, CardNumber, sumDoc, sumDoc - sumStop, (frontol.currentDocument.type.code == 2), frontol.sessionNumber);
-			frontol.currentDocument.userValues.set("DiscountBon", "" + Bonica.PayCancelSumm); //Сумма оплаты бонусами
+			frontol.currentDocument.userValues.set("DiscountBon", "" + Bonica.PayCancelSumm); //РЎСѓРјРјР° РѕРїР»Р°С‚С‹ Р±РѕРЅСѓСЃР°РјРё
 			Bonica.CardBalance(CardNumber);
 			if (Bonica.ErrorCode == 0) {
 				frontol.currentDocument.userValues.set("Balance", "" + Bonica.Balance);
@@ -1487,11 +1487,11 @@ function InputPay() {
 			}
 			frontol.currentDocument.recalculateAllDiscounts();
 		} else {
-			Bonica.SaveToLog("При оплате сертификатами расчет бонусами не возможен.", 0, "Лог скрипта");
-			frontol.actions.showError("При оплате сертификатами расчет бонусами не возможен.");
+			Bonica.SaveToLog("РџСЂРё РѕРїР»Р°С‚Рµ СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё СЂР°СЃС‡РµС‚ Р±РѕРЅСѓСЃР°РјРё РЅРµ РІРѕР·РјРѕР¶РµРЅ.", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+			frontol.actions.showError("РџСЂРё РѕРїР»Р°С‚Рµ СЃРµСЂС‚РёС„РёРєР°С‚Р°РјРё СЂР°СЃС‡РµС‚ Р±РѕРЅСѓСЃР°РјРё РЅРµ РІРѕР·РјРѕР¶РµРЅ.");
 		}
 	} else {
-		Bonica.SaveToLog("При возврате на основании сумма оплаты восстанавливается автоматически", 0, "Лог скрипта");
-		frontol.actions.showError("При возврате на основании сумма оплаты восстанавливается автоматически");
+		Bonica.SaveToLog("РџСЂРё РІРѕР·РІСЂР°С‚Рµ РЅР° РѕСЃРЅРѕРІР°РЅРёРё СЃСѓРјРјР° РѕРїР»Р°С‚С‹ РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё", 0, "Р›РѕРі СЃРєСЂРёРїС‚Р°");
+		frontol.actions.showError("РџСЂРё РІРѕР·РІСЂР°С‚Рµ РЅР° РѕСЃРЅРѕРІР°РЅРёРё СЃСѓРјРјР° РѕРїР»Р°С‚С‹ РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё");
 	}
 }
